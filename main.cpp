@@ -31,7 +31,7 @@ int main()
 	string outsideComp;
 
 	double endPriceTotal = 0.00;
-	
+
 	int layers;
 	int quantity;
 
@@ -40,14 +40,14 @@ int main()
 
 	vector<BakedGood*> userOrder;
 	vector<BakedGood*> tempVector;
-	
+
 	cout << "**Bread and Cakes Bakery**" << endl << endl;
 	cout << "Enter sub-order (enter \"done\" to finish)" << endl;
 	do
 	{
 		cout << "Sub-order: " << endl;
 		cin >> goodType;
-		
+
 		if (goodType == "Bread")
 		{
 			cin >> breadType;
@@ -104,7 +104,7 @@ int main()
 				foundLocations.push_back(j);
 			}
 		}
-		
+
 		cout << fixed << setprecision(2) << setw(75) << left << tempVector.at(0)->ToStr();
 		cout << setw(9) << right << invoiceCounter << setw(9) << right << tempVector.at(0)->CalcDiscount(invoiceCounter) << endl;
 		endPriceTotal += tempVector.at(0)->CalcDiscount(invoiceCounter);
@@ -119,6 +119,12 @@ int main()
 	cout << fixed << setprecision(2) << setw(75) << left << "Totals" << setw(9) << right << userOrder.size() << setw(9) << right << endPriceTotal << endl;
 	cout << "Good Bye";
 	//system("pause");
-	
+
+	for (unsigned int i = 0; i < userOrder.size(); i++)
+	{
+		delete userOrder.at(i); //clearing memory
+	}
+	userOrder.clear();
+
 	return 0;
 }
